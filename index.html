@@ -302,6 +302,9 @@ legend { font-size: 0.86rem; font-weight: 600; margin-bottom: 8px; padding: 0; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .status { font-size: 0.95rem; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--line-2); display: grid; gap: 12px; justify-items: start; }
 .status[hidden] { display: none; }
+.choose { margin: 4px 0 0; color: var(--ink-2); font-size: 0.92rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.actions .btn { flex: 1 1 200px; justify-content: center; text-align: center; }
 .status.ok { border-color: var(--cyan); background: rgba(53, 224, 255, 0.08); }
 .status.warn { border-color: #FFC15A; }
 
@@ -758,7 +761,11 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
           <textarea id="mensaje" name="mensaje" rows="3" placeholder="Contanos qué tareas les quitan más tiempo hoy"></textarea>
         </div>
         <input class="hp" type="text" id="hp" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn" id="send" type="submit">Enviar y pedir cotización</button>
+        <p class="choose">Elegí cómo querés recibir la propuesta:</p>
+        <div class="actions">
+          <button class="btn" id="send" type="submit">Enviar por email</button>
+          <button class="btn ghost" id="sendWa" type="button">Enviar por WhatsApp</button>
+        </div>
         <div class="status" id="status" role="status" aria-live="polite" hidden></div>
       </form>
     </div>
@@ -997,12 +1004,22 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
     }
     st.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
   }
+  function collect() {
+    var v = function (id) { return form.elements[id].value.trim(); };
+    return { 'Modalidad': form.elements['modalidad'].value, 'Interés': v('interes'), 'Zona': v('zona'), 'Cantidad de personas': v('personas'), 'Empresa': v('empresa'), 'Contacto': v('contacto'), 'email': v('email'), 'Teléfono': v('telefono'), 'Comentarios': v('mensaje') };
+  }
+  $('sendWa').addEventListener('click', function () {
+    if ($('hp').value) return;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var d = collect();
+    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(buildText(d)), '_blank', 'noopener');
+    showStatus('ok', 'Se abrió WhatsApp con tus datos ya escritos. Tocá enviar y te respondemos a la brevedad.');
+  });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if ($('hp').value) return;
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    var v = function (id) { return form.elements[id].value.trim(); };
-    var d = { 'Modalidad': form.elements['modalidad'].value, 'Interés': v('interes'), 'Zona': v('zona'), 'Cantidad de personas': v('personas'), 'Empresa': v('empresa'), 'Contacto': v('contacto'), 'email': v('email'), 'Teléfono': v('telefono'), 'Comentarios': v('mensaje') };
+    var d = collect();
     btn.disabled = true; btn.textContent = 'Enviando…'; st.hidden = true;
     var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
     var t = setTimeout(function () { if (ctrl) ctrl.abort(); }, 9000);
@@ -1012,9 +1029,9 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
       .then(function (r) { return r.json().then(function (j) { return r.ok && (j.success === true || j.success === 'true'); }, function () { return false; }); })
       .catch(function () { return false; })
       .then(function (ok) {
-        clearTimeout(t); btn.disabled = false; btn.textContent = 'Enviar y pedir cotización';
+        clearTimeout(t); btn.disabled = false; btn.textContent = 'Enviar por email';
         if (ok) { showStatus('ok', 'Recibimos tu solicitud. Te escribimos con la propuesta a la brevedad.'); form.reset(); }
-        else { showStatus('warn', 'No pudimos enviar el formulario desde esta página. Mandá los mismos datos por WhatsApp, ya los dejamos escritos.', d); }
+        else { showStatus('warn', 'No pudimos enviar el formulario desde esta página. Podés mandar los mismos datos por WhatsApp, ya los dejamos escritos.', d); }
       });
   });
 })();
