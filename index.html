@@ -54,7 +54,7 @@ img, svg { max-width: 100%; }
 .lockup-text { display: flex; flex-direction: column; line-height: 1; min-width: 0; }
 .wm { font-family: var(--cond); font-weight: 700; font-size: 1.7rem; letter-spacing: 0.01em; text-transform: uppercase; }
 .tagline { font-family: var(--cond); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-2); margin-top: 4px; white-space: nowrap; }
-.nav { display: flex; gap: 26px; font-size: 0.92rem; }
+.nav { display: flex; gap: clamp(14px, 1.6vw, 24px); font-size: 0.9rem; white-space: nowrap; }
 .nav a { text-decoration: none; color: var(--ink-2); transition: color .2s; }
 .nav a:hover { color: var(--ink); }
 .progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--blue), var(--cyan)); }
@@ -358,6 +358,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
       <a href="#calculadora">Calculadora</a>
       <a href="#programa">Programa</a>
       <a href="#blog">Blog</a>
+      <a href="sistemas-a-medida.html">Sistemas</a>
       <a href="#instructor">Sobre mí</a>
       <a href="#cotizar">Contacto</a>
     </nav>
@@ -382,7 +383,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
         </div>
         <div class="proofs">
           <span class="proof"><b>+10 años</b> en empresas</span>
-          <span class="proof"><b>12 hs</b> · grupos de hasta 8</span>
+          <span class="proof"><b>12 hs</b> · grupos reducidos</span>
           <span class="proof"><b>3 meses</b> de consultoría incluida</span>
         </div>
       </div>
@@ -476,7 +477,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
             <path class="ln" d="M122 19h50M122 47h34M122 75h42"/>
           </svg>
           <h3>Sistemas a medida</h3>
-          <p>Herramientas y automatizaciones desarrolladas para tu forma de trabajar: carga de datos, reportes y circuitos internos.</p>
+          <p>Herramientas y automatizaciones desarrolladas para tu forma de trabajar: CRM, gestores de stock y de espacios, o lo que necesites. <a href="sistemas-a-medida.html" style="color:var(--cyan);font-weight:600">Ver más →</a></p>
         </article>
         <article class="tile b-d rv">
           <h3>Donde lo necesites</h3>
@@ -492,10 +493,10 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
           <p>Después de la capacitación, el equipo sigue consultando dudas del día a día online, sin costo.</p>
         </article>
         <article class="tile b-f rv">
-          <span class="big grad">Hasta 8</span>
-          <h3>Personas por grupo</h3>
+          <span class="big grad">Reducidos</span>
+          <h3>Grupos de trabajo</h3>
           <p>Seguimiento individual y evaluación práctica al cierre de cada módulo.</p>
-          <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         </article>
       </div>
     </div>
@@ -627,7 +628,7 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
       </div>
       <div class="facts rv">
         <span class="fact"><b>12 hs</b> de capacitación</span>
-        <span class="fact"><b>hasta 8</b> personas por grupo</span>
+        <span class="fact"><b>grupos</b> reducidos</span>
         <span class="fact"><b>evaluación</b> práctica por módulo</span>
         <span class="fact"><b>3 meses</b> de consultoría online incluida</span>
       </div>
@@ -724,13 +725,13 @@ footer { border-top: 1px solid var(--line); padding-block: 44px 96px; background
       </div>
       <div class="faq rv">
         <details><summary>¿Cuánto dura la capacitación?</summary><p>Son 12 horas por grupo, distribuidas en clases de 1,5 a 2 horas. El cronograma se acuerda según la disponibilidad del equipo.</p></details>
-        <details><summary>¿Cuántas personas pueden participar?</summary><p>Los grupos son de hasta 8 personas para garantizar seguimiento individual. Si el equipo es más grande, se arman varios grupos.</p></details>
+        <details><summary>¿Cuántas personas pueden participar?</summary><p>Trabajamos con grupos reducidos para garantizar seguimiento individual. Si el equipo es más grande, se arman varios grupos. La cantidad ideal se define al cotizar.</p></details>
         <details><summary>¿Cómo se dicta?</summary><p>De tres formas: presencial en tu empresa, a distancia en vivo, o en un coworking o sala de alquiler. Elegís la modalidad al cotizar.</p></details>
         <details><summary>¿Se adapta al nivel y a las tareas de nuestro equipo?</summary><p>Sí. Antes de empezar hay un diagnóstico breve y los ejercicios se arman con los archivos y procesos reales de la empresa.</p></details>
         <details><summary>¿Qué pasa después de terminar?</summary><p>Incluye 3 meses de consultoría online sin costo para resolver dudas puntuales del trabajo diario.</p></details>
         <details><summary>¿Se evalúa lo aprendido?</summary><p>Sí, cada módulo cierra con una evaluación práctica.</p></details>
         <details><summary>¿Cuánto cuesta?</summary><p>Se cotiza a medida según la cantidad de grupos, la modalidad y la zona. Completá el formulario o escribí por WhatsApp y recibís una propuesta sin cargo.</p></details>
-        <details><summary>¿Hacen sistemas a medida?</summary><p>Sí. Cuando una planilla ya no alcanza, se desarrollan herramientas y automatizaciones puntuales. Se evalúa el caso en el diagnóstico.</p></details>
+        <details><summary>¿Hacen sistemas a medida?</summary><p>Sí. Cuando una planilla ya no alcanza, se desarrollan herramientas y automatizaciones puntuales. Se evalúa el caso en el diagnóstico. <a href="sistemas-a-medida.html" style="color:var(--cyan)">Conocé más sobre sistemas a medida</a>.</p></details>
       </div>
     </div>
   </section>
