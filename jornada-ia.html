@@ -566,32 +566,35 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
     var btn = $('submitBtn'); btn.disabled = true; btn.textContent = 'Enviando…';
     var t = tarifa(state.count);
 
+    var timeout = new Promise(function (_, rej) { setTimeout(function () { rej(new Error('timeout')); }, 12000); });
     var req = CFG.SCRIPT_URL
       ? fetch(CFG.SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
           .then(function (r) { return r.json(); })
       : fetch(CFG.FALLBACK_MAIL, {
           method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ _subject: 'Nueva inscripción – Jornada IA 2/12', Nombre: data.nombre, Telefono: data.telefono, Email: data.email, Negocio: data.negocio, Tarifa: (t.pre ? 'Preventa ' : 'General ') + pesos(t.precio), _honey: data.website, _template: 'table' })
-        }).then(function (r) { return r.json(); }).then(function (j) { return { ok: j.success === true || j.success === 'true', linkAsignado: t.link, precioAsignado: t.precio }; });
+          body: JSON.stringify({ _subject: 'Nueva inscripción – Jornada IA 2/12', Nombre: data.nombre, Telefono: data.telefono, Email: data.email, Negocio: data.negocio, Tarifa: (t.pre ? 'Preventa ' : 'General ') + pesos(t.precio), _honey: data.website, _template: 'table', _captcha: 'false' })
+        }).then(function (r) { return r.json(); }).then(function (j) { return { ok: j.success === true || j.success === 'true', viaMail: true }; });
 
-    req.then(function (j) {
+    Promise.race([req, timeout]).catch(function () { return { ok: false }; }).then(function (j) {
       btn.disabled = false; btn.textContent = 'Inscribirme';
       if (j.lleno) { state.count = CFG.TOTAL; render(); return; }
-      if (!j.ok) { err('No pudimos registrar la inscripción. Probá de nuevo o escribime por WhatsApp.'); return; }
-      if (typeof j.inscriptos === 'number') { state.count = j.inscriptos; render(); }
+      if (j.ok && typeof j.inscriptos === 'number') { state.count = j.inscriptos; render(); }
+      // El pago se muestra siempre, aunque falle el registro: nunca se pierde la venta.
       var link = j.linkAsignado || t.link, precio = j.precioAsignado || t.precio;
+      var resumen = 'Nombre: ' + data.nombre + '\nTeléfono: ' + data.telefono + '\nEmail: ' + data.email + '\nNegocio: ' + data.negocio;
       $('payBtn').href = link;
       $('payBtn').textContent = 'Pagar ' + pesos(precio) + ' con Mercado Pago';
-      $('doneTitle').textContent = '¡Listo, ' + data.nombre.split(' ')[0] + '!';
-      $('doneText').textContent = (j.numero ? 'Tenés el lugar #' + j.numero + '. ' : '') + 'Para confirmarlo, aboná ' + pesos(precio) + ' con Mercado Pago. También te enviamos el link por mail.';
-      $('waLink').href = 'https://wa.me/' + CFG.WA + '?text=' + encodeURIComponent('Hola Javier, me inscribí a la Jornada IA del 2/12 (' + data.nombre + '). Te paso el comprobante de pago.');
-      $('waLink').textContent = 'Ya pagué: enviar comprobante por WhatsApp';
+      $('doneTitle').textContent = j.ok ? '¡Listo, ' + data.nombre.split(' ')[0] + '!' : 'Último paso, ' + data.nombre.split(' ')[0];
+      $('doneText').textContent = j.ok
+        ? (j.numero ? 'Tenés el lugar #' + j.numero + '. ' : '') + 'Para confirmarlo, aboná ' + pesos(precio) + ' con Mercado Pago.' + (j.viaMail ? '' : ' También te enviamos el link por mail.')
+        : 'Aboná ' + pesos(precio) + ' con Mercado Pago y mandanos tus datos por WhatsApp con el botón de abajo para reservar tu lugar.';
+      $('waLink').href = 'https://wa.me/' + CFG.WA + '?text=' + encodeURIComponent(j.ok
+        ? 'Hola Javier, me inscribí a la Jornada IA del 2/12 (' + data.nombre + '). Te paso el comprobante de pago.'
+        : 'Hola Javier, quiero inscribirme a la Jornada IA del 2/12.\n' + resumen);
+      $('waLink').textContent = j.ok ? 'Ya pagué: enviar comprobante por WhatsApp' : 'Enviar mis datos por WhatsApp';
       $('formBody').hidden = true;
       $('done').classList.add('show');
       form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }).catch(function () {
-      btn.disabled = false; btn.textContent = 'Inscribirme';
-      err('No pudimos registrar la inscripción. Probá de nuevo o escribime por WhatsApp al +54 9 11 3153-1202.');
     });
   });
 })();
