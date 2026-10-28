@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vendé más con IA · Jornada para emprendedores · 2 de diciembre</title>
+<meta name="description" content="Jornada práctica de 3 horas para emprendedores y comerciantes: publicidades, landing page y un mes de redes con inteligencia artificial. Miércoles 2 de diciembre, 18 h, Espacio Delfos (CABA).">
+<meta name="theme-color" content="#050A16">
+<meta property="og:title" content="Vendé más con IA – Jornada práctica para emprendedores y comerciantes">
+<meta property="og:description" content="En 3 horas te llevás tu publicidad, tu landing publicada y un mes de contenido para redes. 2 de diciembre, 18 h, Espacio Delfos, CABA.">
+<meta property="og:image" content="https://jgomezai.github.io/JGinformatica/flyers/flyer-feed.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/webp" href="assets/logo-jg.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@500;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #050A16; --bg-2: #08111F; --surface: #0C1829; --surface-2: #112038;
+  --ink: #EAF2FB; --ink-2: #9DB0C8; --line: rgba(160,190,230,.14); --line-2: rgba(160,190,230,.28);
+  --blue: #2F9BFF; --cyan: #35E0FF; --gold: #FFC15A; --ok: #3EE6A0; --warn: #FFB547; --btn-ink: #02142A;
+  --display: 'Sora','Segoe UI',system-ui,sans-serif; --body: 'Instrument Sans','Segoe UI',system-ui,sans-serif;
+  --mono: 'JetBrains Mono',ui-monospace,Consolas,monospace; --cond: 'Barlow Condensed','Arial Narrow',sans-serif;
+  color-scheme: dark;
+}
+*,*::before,*::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1,h2,h3,p,ul,ol { margin: 0; }
+ul,ol { padding: 0; list-style: none; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.wrap { max-width: 1120px; margin-inline: auto; padding-inline: 16px; }
+@media (min-width: 700px) { .wrap { padding-inline: 24px; } }
+.silver { background: linear-gradient(180deg,#fff 0%,#D2DEEC 46%,#8EA3BE 54%,#EAF1F9 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad { background: linear-gradient(100deg,var(--blue),var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mono { font-family: var(--mono); }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 30; background: rgba(5,10,22,.82); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-block: 10px; }
+.lockup { display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }
+.lockup img { width: 40px; filter: drop-shadow(0 0 10px rgba(47,155,255,.35)); }
+.lockup-text { display: flex; flex-direction: column; line-height: 1; }
+.wm { font-family: var(--cond); font-weight: 700; font-size: 1.5rem; text-transform: uppercase; }
+.tagline { font-family: var(--cond); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); margin-top: 4px; white-space: nowrap; }
+.nav { display: flex; gap: 22px; font-size: .9rem; }
+.nav a { text-decoration: none; color: var(--ink-2); }
+.nav a:hover { color: var(--ink); }
+@media (max-width: 900px) { .nav { display: none; } }
+@media (max-width: 420px) { .tagline { display: none; } }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 12px; border: 1px solid transparent; font: 600 1rem var(--body); text-decoration: none; cursor: pointer; background: linear-gradient(100deg,var(--blue),var(--cyan)); color: var(--btn-ink); transition: transform .2s, box-shadow .2s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 34px -10px var(--blue); }
+.btn.ghost { background: rgba(255,255,255,.04); color: var(--ink); border-color: var(--line-2); }
+.btn.small { padding: 9px 16px; font-size: .9rem; }
+.btn.block { width: 100%; }
+.btn[disabled] { opacity: .65; cursor: wait; transform: none; }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); isolation: isolate; }
+.aurora i { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; z-index: -1; }
+.aurora i:nth-child(1) { width: 480px; height: 480px; left: -160px; top: -160px; background: radial-gradient(circle,rgba(47,155,255,.55),transparent 68%); }
+.aurora i:nth-child(2) { width: 520px; height: 520px; right: -200px; top: 60px; background: radial-gradient(circle,rgba(53,224,255,.35),transparent 68%); }
+.gridbg { position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px); background-size: 56px 56px; -webkit-mask-image: radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%); mask-image: radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%); }
+.hero-grid { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: clamp(28px,5vw,56px); align-items: center; padding-block: clamp(40px,7vw,88px); }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: minmax(0,1fr); } }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border: 1px solid var(--line-2); border-radius: 999px; background: rgba(255,255,255,.04); font: 500 .78rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--cyan); }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); animation: ping 2.4s ease-out infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(53,224,255,.6); } 80%,100% { box-shadow: 0 0 0 10px rgba(53,224,255,0); } }
+h1 { margin-top: 20px; font: 800 clamp(2.3rem,6vw,4.2rem)/1.02 var(--display); letter-spacing: -.035em; text-wrap: balance; }
+.lede { margin-top: 20px; max-width: 54ch; font-size: clamp(1.03rem,1.6vw,1.18rem); color: var(--ink-2); }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.fact { display: inline-flex; align-items: center; gap: 9px; padding: 9px 14px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.03); font-size: .92rem; }
+.fact svg { width: 18px; height: 18px; color: var(--cyan); flex-shrink: 0; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* Tarjeta de cupos */
+.seat-card { position: relative; padding: 1px; border-radius: 22px; background: linear-gradient(140deg,rgba(53,224,255,.7),rgba(47,155,255,.15) 40%,rgba(255,193,90,.5)); box-shadow: 0 30px 80px -30px rgba(47,155,255,.5); }
+.seat-in { background: linear-gradient(180deg,var(--surface-2),var(--surface)); border-radius: 21px; padding: clamp(20px,3vw,28px); }
+.tier { display: flex; align-items: center; justify-content: space-between; gap: 10px; font: 500 .74rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.tier b { color: var(--gold); }
+.price { margin-top: 10px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.price strong { font: 800 clamp(2.6rem,6vw,3.4rem)/1 var(--display); letter-spacing: -.03em; }
+.price s { color: var(--ink-2); font-size: 1.1rem; }
+.price-note { margin-top: 8px; font-size: .9rem; color: var(--ink-2); }
+.counter { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
+.counter-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.counter-num { font: 700 1.8rem/1 var(--display); }
+.counter-num small { font-size: .95rem; color: var(--ink-2); font-weight: 500; }
+.counter-left { font-size: .9rem; color: var(--cyan); font-weight: 600; text-align: right; }
+.meter { position: relative; margin-top: 12px; height: 12px; border-radius: 999px; background: rgba(255,255,255,.06); overflow: hidden; }
+.meter-fill { position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 999px; background: linear-gradient(90deg,var(--blue),var(--cyan)); transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+.meter-mark { position: absolute; top: -3px; bottom: -3px; left: 33.333%; width: 2px; background: var(--gold); }
+.meter-legend { display: flex; justify-content: space-between; margin-top: 8px; font: .72rem var(--mono); color: var(--ink-2); }
+.meter-legend span:nth-child(2) { color: var(--gold); }
+.countdown { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 18px; }
+.cd { text-align: center; padding: 9px 4px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,.03); }
+.cd b { display: block; font: 700 1.35rem/1 var(--display); }
+.cd span { font: .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.cd-label { margin-top: 14px; font-size: .82rem; color: var(--ink-2); }
+.seat-card .btn { margin-top: 20px; }
+
+/* Secciones */
+section.block { padding-block: clamp(56px,8vw,96px); border-bottom: 1px solid var(--line); }
+.kicker { font: 500 .78rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); }
+h2 { margin-top: 12px; font: 700 clamp(1.8rem,4vw,2.7rem)/1.1 var(--display); letter-spacing: -.03em; text-wrap: balance; max-width: 22ch; }
+.sec-lede { margin-top: 14px; max-width: 60ch; color: var(--ink-2); font-size: 1.05rem; }
+
+.outcomes { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin-top: 36px; }
+@media (max-width: 860px) { .outcomes { grid-template-columns: minmax(0,1fr); } }
+.out { position: relative; padding: 26px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg,var(--surface),var(--bg-2)); overflow: hidden; }
+.out-n { font: 800 3.4rem/1 var(--display); color: transparent; -webkit-text-stroke: 1px var(--line-2); position: absolute; right: 18px; top: 14px; }
+.out-ico { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 12px; background: rgba(47,155,255,.14); color: var(--cyan); }
+.out-ico svg { width: 24px; height: 24px; }
+.out h3 { margin-top: 18px; font: 700 1.25rem var(--display); }
+.out p { margin-top: 8px; color: var(--ink-2); }
+.out .tag { display: inline-block; margin-top: 16px; font: 500 .74rem var(--mono); padding: 4px 10px; border-radius: 999px; background: rgba(62,230,160,.12); color: var(--ok); }
+
+/* Temario */
+.timeline { margin-top: 40px; display: grid; gap: 14px; }
+.tl { display: grid; grid-template-columns: 112px minmax(0,1fr); gap: 18px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.02); }
+.tl.break { background: transparent; border-style: dashed; padding-block: 12px; }
+.tl-time { font: 500 .85rem var(--mono); color: var(--cyan); padding-top: 3px; }
+.tl h3 { font: 700 1.12rem var(--display); }
+.tl p { margin-top: 6px; color: var(--ink-2); }
+.tl .tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tl .tools span { font: .72rem var(--mono); padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--ink-2); }
+@media (max-width: 600px) { .tl { grid-template-columns: minmax(0,1fr); gap: 6px; } }
+
+.two { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(24px,5vw,56px); align-items: start; }
+@media (max-width: 860px) { .two { grid-template-columns: minmax(0,1fr); } }
+.checks { margin-top: 26px; display: grid; gap: 12px; }
+.checks li { display: flex; gap: 12px; align-items: flex-start; }
+.checks li::before { content: ""; flex-shrink: 0; width: 22px; height: 22px; margin-top: 2px; border-radius: 7px; background: rgba(53,224,255,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2335E0FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/14px no-repeat; }
+
+.place { padding: 26px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg,var(--surface),var(--bg-2)); }
+.place h3 { font: 700 1.3rem var(--display); }
+.place dl { margin: 18px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; }
+.place dt { font: .78rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); padding-top: 3px; }
+.place dd { margin: 0; font-weight: 600; }
+.place .btn { margin-top: 20px; }
+
+/* Formulario */
+.form-grid { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: clamp(24px,5vw,56px); align-items: start; }
+@media (max-width: 900px) { .form-grid { grid-template-columns: minmax(0,1fr); } }
+.steps { margin-top: 26px; display: grid; gap: 14px; counter-reset: s; }
+.steps li { counter-increment: s; display: flex; gap: 14px; color: var(--ink-2); }
+.steps li::before { content: counter(s); flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font: 600 .85rem var(--mono); background: rgba(47,155,255,.16); color: var(--cyan); }
+.steps b { color: var(--ink); }
+form.card { padding: clamp(20px,3vw,30px); border: 1px solid var(--line-2); border-radius: 20px; background: linear-gradient(180deg,var(--surface-2),var(--surface)); }
+.field { display: grid; gap: 6px; margin-bottom: 16px; }
+.field label { font-weight: 600; font-size: .92rem; }
+.field input, .field select { width: 100%; padding: 13px 14px; border-radius: 11px; border: 1px solid var(--line-2); background: rgba(5,10,22,.6); color: var(--ink); font: 400 1rem var(--body); }
+.field input:focus, .field select:focus { border-color: var(--cyan); outline: none; box-shadow: 0 0 0 3px rgba(53,224,255,.18); }
+.field input[aria-invalid="true"], .field select[aria-invalid="true"] { border-color: #FF6B7A; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-price { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 16px; margin-bottom: 16px; border-radius: 12px; background: rgba(255,193,90,.08); border: 1px solid rgba(255,193,90,.3); font-size: .92rem; }
+.form-price b { font: 700 1.2rem var(--display); color: var(--gold); white-space: nowrap; }
+.fine { margin-top: 12px; font-size: .82rem; color: var(--ink-2); text-align: center; }
+.status { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 12px; font-size: .95rem; }
+.status.show { display: block; }
+.status.err { background: rgba(255,107,122,.1); border: 1px solid rgba(255,107,122,.4); }
+.done { display: none; text-align: center; }
+.done.show { display: block; }
+.done-ico { width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; background: rgba(62,230,160,.14); color: var(--ok); }
+.done-ico svg { width: 32px; height: 32px; }
+.done h3 { margin-top: 16px; font: 700 1.5rem var(--display); }
+.done p { margin-top: 10px; color: var(--ink-2); }
+.done .btn { margin-top: 20px; }
+.done .alt { display: block; margin-top: 12px; font-size: .9rem; color: var(--ink-2); }
+
+/* FAQ */
+.faq { margin-top: 32px; display: grid; gap: 10px; max-width: 820px; }
+.faq details { border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.02); }
+.faq summary { cursor: pointer; padding: 16px 20px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--cyan); font: 500 1.3rem/1 var(--mono); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { padding: 0 20px 18px; color: var(--ink-2); }
+
+footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
+.foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+
+.sticky-cta { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom,0px)); z-index: 40; display: none; }
+@media (max-width: 700px) { .sticky-cta.show { display: block; } }
+.sticky-cta .btn { width: 100%; box-shadow: 0 14px 40px -10px rgba(0,0,0,.8); }
+
+.rv { opacity: 0; transform: translateY(18px); transition: opacity .7s, transform .7s; }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation: none !important; transition: none !important; } .rv { opacity: 1; transform: none; } }
+</style>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="lockup" href="index.html" aria-label="JG Informática, volver al inicio">
+      <img src="assets/logo-jg.webp" alt="" width="40" height="38">
+      <span class="lockup-text"><span class="wm silver">Informática</span><span class="tagline">Capacitación y Soluciones IT</span></span>
+    </a>
+    <nav class="nav" aria-label="Jornada">
+      <a href="#que-te-llevas">Qué te llevás</a>
+      <a href="#temario">Temario</a>
+      <a href="#lugar">Lugar</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="index.html">Inicio</a>
+    </nav>
+    <a class="btn small" href="#inscripcion">Inscribirme</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="aurora" aria-hidden="true"><i></i><i></i></div>
+    <div class="gridbg" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Jornada presencial · cupo 60 personas</span>
+        <h1><span class="silver">Vendé más</span><br><span class="grad">con IA</span></h1>
+        <p class="lede">Una tarde práctica para emprendedores y comerciantes. En 3 horas salís con <b style="color:var(--ink)">tu publicidad lista, tu landing publicada y un mes de contenido para redes</b>, todo hecho con inteligencia artificial. Sin saber programar.</p>
+        <div class="facts">
+          <span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Miércoles 2 de diciembre</span>
+          <span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>18 a 21 h</span>
+          <span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Espacio Delfos · Azcuénaga 714, CABA</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn" href="#inscripcion">Reservar mi lugar</a>
+          <a class="btn ghost" href="#temario">Ver temario</a>
+        </div>
+      </div>
+
+      <aside class="seat-card" aria-label="Precio y cupos">
+        <div class="seat-in">
+          <div class="tier"><span id="tierName">Precio preventa</span><b id="tierBadge">Primeros 20</b></div>
+          <div class="price"><strong id="priceNow">$25.000</strong><s id="priceOld">$35.000</s></div>
+          <p class="price-note" id="priceNote">Hasta el viernes 13 de noviembre o hasta completar los primeros 20 lugares. Después, $35.000.</p>
+
+          <div class="counter" id="counter">
+            <div class="counter-top">
+              <div class="counter-num"><span id="cnt">–</span> <small>de 60 inscriptos</small></div>
+              <div class="counter-left" id="left">Cargando cupos…</div>
+            </div>
+            <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0" id="meter"><div class="meter-fill" id="fill"></div><div class="meter-mark" title="Fin de preventa: 20 lugares"></div></div>
+            <div class="meter-legend"><span>0</span><span>20 · fin preventa</span><span>60</span></div>
+          </div>
+
+          <div id="cdWrap">
+            <div class="countdown" aria-live="off">
+              <div class="cd"><b id="cdD">00</b><span>días</span></div>
+              <div class="cd"><b id="cdH">00</b><span>horas</span></div>
+              <div class="cd"><b id="cdM">00</b><span>min</span></div>
+              <div class="cd"><b id="cdS">00</b><span>seg</span></div>
+            </div>
+            <p class="cd-label" id="cdLabel">para que termine la preventa</p>
+          </div>
+          <a class="btn block" href="#inscripcion" id="heroCta">Quiero mi lugar a $25.000</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="que-te-llevas">
+    <div class="wrap">
+      <p class="kicker rv">Resultado en el día</p>
+      <h2 class="rv">No es una charla: <span class="grad">salís con tres cosas funcionando</span></h2>
+      <p class="sec-lede rv">Cada bloque termina con algo hecho por vos, sobre tu propio negocio. Trabajamos con plantillas de prompts ya preparadas para que nadie se quede atrás.</p>
+      <div class="outcomes">
+        <article class="out rv">
+          <span class="out-n" aria-hidden="true">01</span>
+          <div class="out-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l15-6v14L3 13z"/><path d="M7 13v5a2 2 0 0 0 4 0v-3"/></svg></div>
+          <h3>Publicidades que venden</h3>
+          <p>Textos con fórmulas probadas, imágenes de producto generadas con IA y 3 versiones de anuncio para Instagram y Facebook.</p>
+          <span class="tag">3 anuncios listos para pautar</span>
+        </article>
+        <article class="out rv">
+          <span class="out-n" aria-hidden="true">02</span>
+          <div class="out-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8"/></svg></div>
+          <h3>Tu landing en 40 minutos</h3>
+          <p>La IA escribe y diseña tu página: promesa, beneficios, botón de WhatsApp y link de pago. Se publica gratis con tu propio link.</p>
+          <span class="tag">Landing publicada</span>
+        </article>
+        <article class="out rv">
+          <span class="out-n" aria-hidden="true">03</span>
+          <div class="out-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2M14 14h2M8 17h2"/></svg></div>
+          <h3>Un mes de redes en una hora</h3>
+          <p>Calendario de 30 publicaciones, guiones de reels, placas y carruseles con tu marca, y publicaciones programadas.</p>
+          <span class="tag">Calendario de 30 días + 5 piezas</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="temario">
+    <div class="wrap">
+      <p class="kicker rv">Temario · 3 horas</p>
+      <h2 class="rv">Paso a paso, de 18 a 21 h</h2>
+      <ol class="timeline">
+        <li class="tl rv"><span class="tl-time">18:00 – 18:20</span><div><h3>La ficha de tu negocio</h3><p>Armás tu "prompt maestro" con tu rubro, cliente ideal, oferta y tono. Lo vas a reutilizar en toda la jornada.</p><div class="tools"><span>ChatGPT</span><span>Gemini</span><span>Claude</span></div></div></li>
+        <li class="tl rv"><span class="tl-time">18:20 – 19:00</span><div><h3>Bloque 1 · Publicidades que venden</h3><p>Fórmulas de copy, imágenes de producto con IA y 3 versiones de anuncio. Cómo probarlas con poco presupuesto.</p><div class="tools"><span>Canva IA</span><span>Generadores de imagen</span><span>Meta Ads</span></div></div></li>
+        <li class="tl rv"><span class="tl-time">19:00 – 19:45</span><div><h3>Bloque 2 · Tu landing page en 40 minutos</h3><p>La estructura que convierte: promesa, beneficios, testimonios y botón de WhatsApp. La publicás gratis y le sumás un link de pago.</p><div class="tools"><span>IA para páginas</span><span>Hosting gratuito</span><span>Mercado Pago</span></div></div></li>
+        <li class="tl break rv"><span class="tl-time">19:45 – 20:00</span><div><h3 style="font-size:1rem;color:var(--ink-2)">Corte · café y networking</h3></div></li>
+        <li class="tl rv"><span class="tl-time">20:00 – 20:40</span><div><h3>Bloque 3 · Un mes de redes en una hora</h3><p>Calendario de 30 publicaciones, guiones de reels, carruseles y placas. Programación y respuestas automáticas.</p><div class="tools"><span>Canva</span><span>CapCut</span><span>Meta Business Suite</span><span>WhatsApp Business</span></div></div></li>
+        <li class="tl rv"><span class="tl-time">20:40 – 21:00</span><div><h3>Cierre · Tu plan de 7 días</h3><p>Checklist de lo que hacés la semana siguiente, preguntas y sorteo entre los asistentes.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap two">
+      <div>
+        <p class="kicker rv">Para quién es</p>
+        <h2 class="rv">Para quien vende y no tiene tiempo ni agencia</h2>
+        <ul class="checks rv">
+          <li>Dueños de comercios y locales a la calle</li>
+          <li>Emprendedores que venden por Instagram o WhatsApp</li>
+          <li>Profesionales independientes que quieren conseguir clientes</li>
+          <li>No necesitás saber de tecnología ni de diseño</li>
+        </ul>
+      </div>
+      <div>
+        <p class="kicker rv">Además te llevás</p>
+        <h2 class="rv">El kit para seguir solo</h2>
+        <ul class="checks rv">
+          <li>Biblioteca de 50 prompts para comercios</li>
+          <li>Plantillas de Canva para placas, historias y carruseles</li>
+          <li>Guía paso a paso de cada herramienta, en PDF</li>
+          <li>Certificado de asistencia</li>
+          <li>Grupo de WhatsApp de consultas por 30 días</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="lugar">
+    <div class="wrap two">
+      <div>
+        <p class="kicker rv">Dónde y cuándo</p>
+        <h2 class="rv">Nos vemos en Espacio Delfos</h2>
+        <p class="sec-lede rv">Traé tu celular o notebook cargados y fotos de 3 productos o servicios de tu negocio. Recomendamos llegar 15 minutos antes para acreditarte.</p>
+      </div>
+      <div class="place rv">
+        <h3>Espacio Delfos</h3>
+        <dl>
+          <dt>Fecha</dt><dd>Miércoles 2 de diciembre de 2026</dd>
+          <dt>Horario</dt><dd>18:00 a 21:00 (acreditación 17:45)</dd>
+          <dt>Dirección</dt><dd>Azcuénaga 714, CABA</dd>
+          <dt>Cupo</dt><dd>60 personas</dd>
+        </dl>
+        <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Azcu%C3%A9naga+714%2C+CABA%2C+Argentina" target="_blank" rel="noopener">Ver en Google Maps</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="inscripcion">
+    <div class="wrap form-grid">
+      <div>
+        <p class="kicker rv">Inscripción</p>
+        <h2 class="rv">Reservá tu lugar en 1 minuto</h2>
+        <ol class="steps rv">
+          <li><span><b>Completá el formulario</b> con tus datos.</span></li>
+          <li><span><b>Pagá con Mercado Pago</b> en el link que te aparece al terminar (también te llega por mail).</span></li>
+          <li><span><b>Listo:</b> te confirmamos por WhatsApp y te sumamos al grupo de la jornada.</span></li>
+        </ol>
+      </div>
+
+      <form class="card" id="regForm" novalidate>
+        <div id="formBody">
+          <div class="form-price"><span id="fpLabel">Precio preventa vigente</span><b id="fpPrice">$25.000</b></div>
+          <div class="field">
+            <label for="f-nombre">Nombre y apellido</label>
+            <input id="f-nombre" name="nombre" autocomplete="name" required>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="f-tel">Teléfono / WhatsApp</label>
+              <input id="f-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345-6789" required>
+            </div>
+            <div class="field">
+              <label for="f-mail">Email</label>
+              <input id="f-mail" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-neg">Tipo de negocio</label>
+            <select id="f-neg" name="negocio" required>
+              <option value="">Elegí una opción</option>
+              <option>Comercio / local a la calle</option>
+              <option>Tienda online / venta por redes</option>
+              <option>Gastronomía</option>
+              <option>Indumentaria y accesorios</option>
+              <option>Belleza y estética</option>
+              <option>Servicios profesionales</option>
+              <option>Salud y bienestar</option>
+              <option>Educación / cursos</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field" id="otroWrap" hidden>
+            <label for="f-otro">Contanos cuál</label>
+            <input id="f-otro" name="otro">
+          </div>
+          <div class="hp" aria-hidden="true"><label>No completar <input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <button class="btn block" type="submit" id="submitBtn">Inscribirme</button>
+          <p class="fine">Al inscribirte te mostramos el link de pago de Mercado Pago. Tu lugar queda confirmado con el pago.</p>
+          <div class="status" id="status" role="alert"></div>
+        </div>
+
+        <div class="done" id="done" aria-live="polite">
+          <div class="done-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+          <h3 id="doneTitle">¡Ya estás anotado!</h3>
+          <p id="doneText">Para confirmar tu lugar, aboná con Mercado Pago.</p>
+          <a class="btn block" id="payBtn" href="https://mpago.la/2XthLMo" target="_blank" rel="noopener">Pagar con Mercado Pago</a>
+          <a class="alt" id="waLink" href="https://wa.me/5491131531202" target="_blank" rel="noopener">¿Dudas? Escribime por WhatsApp</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="block" id="preguntas">
+    <div class="wrap">
+      <p class="kicker rv">Preguntas frecuentes</p>
+      <h2 class="rv">Lo que más nos preguntan</h2>
+      <div class="faq">
+        <details class="rv"><summary>¿Necesito saber de tecnología?</summary><p>No. Está pensada para personas sin conocimientos técnicos. Trabajamos con plantillas listas: vos completás los datos de tu negocio.</p></details>
+        <details class="rv"><summary>¿Qué tengo que llevar?</summary><p>Celular o notebook con batería, una cuenta de Google y fotos de 3 productos o servicios. Si podés, creá una cuenta gratuita de Canva antes de ir.</p></details>
+        <details class="rv"><summary>¿Las herramientas son pagas?</summary><p>Usamos versiones gratuitas o de muy bajo costo. Todo lo que hacés en la jornada lo podés seguir usando sin pagar suscripciones.</p></details>
+        <details class="rv"><summary>¿Hasta cuándo es la preventa?</summary><p>Hasta el viernes 13 de noviembre a las 23:59 o hasta completar los primeros 20 lugares, lo que ocurra primero. Después el valor es $35.000.</p></details>
+        <details class="rv"><summary>¿Cómo se confirma mi lugar?</summary><p>Con el pago por Mercado Pago. Al terminar la inscripción te aparece el link, y también te llega por mail.</p></details>
+        <details class="rv"><summary>¿Puedo ir con mi socio o empleado?</summary><p>Sí. Cada persona se inscribe por separado. Si vienen 5 o más del mismo negocio o asociación, escribime por WhatsApp para un precio de grupo.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="lockup" href="index.html" aria-label="JG Informática, inicio">
+      <img src="assets/logo-jg.webp" alt="" width="40" height="38">
+      <span class="lockup-text"><span class="wm silver">Informática</span><span class="tagline">Capacitación y Soluciones IT</span></span>
+    </a>
+    <span>JG Informática · Buenos Aires · <a href="https://wa.me/5491131531202" target="_blank" rel="noopener">WhatsApp +54 9 11 3153-1202</a></span>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="sticky"><a class="btn" href="#inscripcion" id="stickyBtn">Reservar mi lugar · $25.000</a></div>
+
+<script>
+(function () {
+  /* ====== CONFIGURACIÓN ======
+     SCRIPT_URL: pegá acá la URL /exec de la implementación de Google Apps Script.
+     Mientras esté vacía, las inscripciones llegan por mail (sin planilla ni contador). */
+  var CFG = {
+    SCRIPT_URL: '',
+    FALLBACK_MAIL: 'https://formsubmit.co/ajax/clasesdeinformaticaenbsas@gmail.com',
+    TOTAL: 60, PREVENTA_CUPO: 20,
+    FIN_PREVENTA: new Date('2026-11-13T23:59:59-03:00'),
+    EVENTO: new Date('2026-12-02T18:00:00-03:00'),
+    PRE: { precio: 25000, link: 'https://mpago.la/2XthLMo' },
+    GEN: { precio: 35000, link: 'https://mpago.la/2TYeocf' },
+    WA: '5491131531202'
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var pesos = function (n) { return '$' + n.toLocaleString('es-AR'); };
+  var state = { count: null };
+
+  function tarifa(count) {
+    var pre = new Date() <= CFG.FIN_PREVENTA && (count === null || count < CFG.PREVENTA_CUPO);
+    return pre ? { pre: true, precio: CFG.PRE.precio, link: CFG.PRE.link } : { pre: false, precio: CFG.GEN.precio, link: CFG.GEN.link };
+  }
+
+  function render() {
+    var c = state.count, t = tarifa(c);
+    $('priceNow').textContent = pesos(t.precio);
+    $('fpPrice').textContent = pesos(t.precio);
+    $('stickyBtn').textContent = 'Reservar mi lugar · ' + pesos(t.precio);
+    if (t.pre) {
+      $('tierName').textContent = 'Precio preventa';
+      $('fpLabel').textContent = 'Precio preventa vigente';
+      $('priceOld').hidden = false;
+      $('heroCta').textContent = 'Quiero mi lugar a ' + pesos(t.precio);
+    } else {
+      $('tierName').textContent = 'Precio general';
+      $('tierBadge').textContent = 'Preventa agotada';
+      $('fpLabel').textContent = 'Precio vigente';
+      $('priceOld').hidden = true;
+      $('priceNote').textContent = 'La preventa terminó. Quedan pocos lugares: reservá el tuyo.';
+      $('heroCta').textContent = 'Reservar mi lugar';
+      $('cdWrap').hidden = true;
+    }
+    if (c === null) {
+      $('counter').hidden = !CFG.SCRIPT_URL;
+      if (t.pre) $('tierBadge').textContent = 'Primeros 20';
+      return;
+    }
+    var left = Math.max(0, CFG.TOTAL - c);
+    $('cnt').textContent = c;
+    $('fill').style.width = Math.min(100, c / CFG.TOTAL * 100) + '%';
+    $('meter').setAttribute('aria-valuenow', c);
+    if (left === 0) {
+      $('left').textContent = 'Cupo completo';
+      $('heroCta').textContent = 'Cupo completo · consultá lista de espera';
+      $('heroCta').href = 'https://wa.me/' + CFG.WA + '?text=' + encodeURIComponent('Hola Javier, quiero anotarme en lista de espera para la Jornada IA del 2/12.');
+      $('formBody').innerHTML = '<p style="text-align:center">Se completó el cupo de 60 personas. <a style="color:var(--cyan)" href="https://wa.me/' + CFG.WA + '">Escribime por WhatsApp</a> para la lista de espera.</p>';
+    } else if (t.pre) {
+      var lp = CFG.PREVENTA_CUPO - c;
+      $('left').textContent = lp === 1 ? '¡Queda 1 lugar en preventa!' : 'Quedan ' + lp + ' lugares en preventa';
+      $('tierBadge').textContent = (lp === 1 ? 'Queda 1' : 'Quedan ' + lp) + ' a este precio';
+    } else {
+      $('left').textContent = left === 1 ? 'Queda 1 lugar' : 'Quedan ' + left + ' lugares';
+    }
+  }
+
+  function tick() {
+    var target = new Date() <= CFG.FIN_PREVENTA ? CFG.FIN_PREVENTA : CFG.EVENTO;
+    if (target === CFG.EVENTO) $('cdLabel').textContent = 'para la jornada';
+    var ms = Math.max(0, target - new Date());
+    var d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, s = Math.floor(ms / 1e3) % 60;
+    var p = function (n) { return String(n).padStart(2, '0'); };
+    $('cdD').textContent = p(d); $('cdH').textContent = p(h); $('cdM').textContent = p(m); $('cdS').textContent = p(s);
+  }
+
+  function loadCount() {
+    if (!CFG.SCRIPT_URL) return;
+    fetch(CFG.SCRIPT_URL, { method: 'GET' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { if (typeof j.inscriptos === 'number') { state.count = j.inscriptos; render(); } })
+      .catch(function () { $('counter').hidden = true; });
+  }
+
+  render(); tick(); setInterval(tick, 1000); loadCount(); setInterval(loadCount, 60000);
+
+  // Reveal
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 }) : null;
+  document.querySelectorAll('.rv').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+
+  // Botón fijo en celular
+  var formSec = $('inscripcion');
+  window.addEventListener('scroll', function () {
+    var r = formSec.getBoundingClientRect();
+    $('sticky').classList.toggle('show', window.scrollY > 500 && (r.top > window.innerHeight || r.bottom < 0));
+  }, { passive: true });
+
+  // Formulario
+  var form = $('regForm'), neg = $('f-neg');
+  neg.addEventListener('change', function () { $('otroWrap').hidden = neg.value !== 'Otro'; });
+
+  function err(msg) { var s = $('status'); s.className = 'status err show'; s.textContent = msg; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    $('status').className = 'status';
+    var f = form.elements, bad = null;
+    var data = {
+      nombre: f.nombre.value.trim(),
+      telefono: f.telefono.value.trim(),
+      email: f.email.value.trim(),
+      negocio: neg.value === 'Otro' && f.otro.value.trim() ? 'Otro: ' + f.otro.value.trim() : neg.value,
+      website: f.website.value
+    };
+    [['nombre', data.nombre.length > 2], ['telefono', data.telefono.replace(/\D/g, '').length >= 8], ['email', /^\S+@\S+\.\S+$/.test(data.email)], ['negocio', !!neg.value]]
+      .forEach(function (x) { var el = f[x[0]]; el.setAttribute('aria-invalid', x[1] ? 'false' : 'true'); if (!x[1] && !bad) bad = el; });
+    if (bad) { err('Revisá los campos marcados.'); bad.focus(); return; }
+
+    var btn = $('submitBtn'); btn.disabled = true; btn.textContent = 'Enviando…';
+    var t = tarifa(state.count);
+
+    var req = CFG.SCRIPT_URL
+      ? fetch(CFG.SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
+          .then(function (r) { return r.json(); })
+      : fetch(CFG.FALLBACK_MAIL, {
+          method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ _subject: 'Nueva inscripción – Jornada IA 2/12', Nombre: data.nombre, Telefono: data.telefono, Email: data.email, Negocio: data.negocio, Tarifa: (t.pre ? 'Preventa ' : 'General ') + pesos(t.precio), _honey: data.website, _template: 'table' })
+        }).then(function (r) { return r.json(); }).then(function (j) { return { ok: j.success === true || j.success === 'true', linkAsignado: t.link, precioAsignado: t.precio }; });
+
+    req.then(function (j) {
+      btn.disabled = false; btn.textContent = 'Inscribirme';
+      if (j.lleno) { state.count = CFG.TOTAL; render(); return; }
+      if (!j.ok) { err('No pudimos registrar la inscripción. Probá de nuevo o escribime por WhatsApp.'); return; }
+      if (typeof j.inscriptos === 'number') { state.count = j.inscriptos; render(); }
+      var link = j.linkAsignado || t.link, precio = j.precioAsignado || t.precio;
+      $('payBtn').href = link;
+      $('payBtn').textContent = 'Pagar ' + pesos(precio) + ' con Mercado Pago';
+      $('doneTitle').textContent = '¡Listo, ' + data.nombre.split(' ')[0] + '!';
+      $('doneText').textContent = (j.numero ? 'Tenés el lugar #' + j.numero + '. ' : '') + 'Para confirmarlo, aboná ' + pesos(precio) + ' con Mercado Pago. También te enviamos el link por mail.';
+      $('waLink').href = 'https://wa.me/' + CFG.WA + '?text=' + encodeURIComponent('Hola Javier, me inscribí a la Jornada IA del 2/12 (' + data.nombre + '). Te paso el comprobante de pago.');
+      $('waLink').textContent = 'Ya pagué: enviar comprobante por WhatsApp';
+      $('formBody').hidden = true;
+      $('done').classList.add('show');
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }).catch(function () {
+      btn.disabled = false; btn.textContent = 'Inscribirme';
+      err('No pudimos registrar la inscripción. Probá de nuevo o escribime por WhatsApp al +54 9 11 3153-1202.');
+    });
+  });
+})();
+</script>
+</html>
