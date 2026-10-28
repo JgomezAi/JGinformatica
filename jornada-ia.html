@@ -452,7 +452,7 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
      SCRIPT_URL: pegá acá la URL /exec de la implementación de Google Apps Script.
      Mientras esté vacía, las inscripciones llegan por mail (sin planilla ni contador). */
   var CFG = {
-    SCRIPT_URL: '',
+    SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwCw6d6rjHiuyb5bfbKIbJljENc45VgT5qgZO25VhupwfSeRl9gMrkiPH7kLmHBEEQL/exec',
     FALLBACK_MAIL: 'https://formsubmit.co/ajax/clasesdeinformaticaenbsas@gmail.com',
     TOTAL: 60, PREVENTA_CUPO: 20,
     FIN_PREVENTA: new Date('2026-11-13T23:59:59-03:00'),
@@ -566,14 +566,20 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
     var btn = $('submitBtn'); btn.disabled = true; btn.textContent = 'Enviando…';
     var t = tarifa(state.count);
 
-    var timeout = new Promise(function (_, rej) { setTimeout(function () { rej(new Error('timeout')); }, 12000); });
-    var req = CFG.SCRIPT_URL
+    var timeout = new Promise(function (_, rej) { setTimeout(function () { rej(new Error('timeout')); }, 20000); });
+    function porMail() {
+      return fetch(CFG.FALLBACK_MAIL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ _subject: 'Nueva inscripción – Jornada IA 2/12', Nombre: data.nombre, Telefono: data.telefono, Email: data.email, Negocio: data.negocio, Tarifa: (t.pre ? 'Preventa ' : 'General ') + pesos(t.precio), _honey: data.website, _template: 'table', _captcha: 'false' })
+      }).then(function (r) { return r.json(); }).then(function (j) { return { ok: j.success === true || j.success === 'true', viaMail: true }; });
+    }
+    // Primero la planilla; si no responde, se envía por mail para no perder la inscripción.
+    var req = (CFG.SCRIPT_URL
       ? fetch(CFG.SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
           .then(function (r) { return r.json(); })
-      : fetch(CFG.FALLBACK_MAIL, {
-          method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ _subject: 'Nueva inscripción – Jornada IA 2/12', Nombre: data.nombre, Telefono: data.telefono, Email: data.email, Negocio: data.negocio, Tarifa: (t.pre ? 'Preventa ' : 'General ') + pesos(t.precio), _honey: data.website, _template: 'table', _captcha: 'false' })
-        }).then(function (r) { return r.json(); }).then(function (j) { return { ok: j.success === true || j.success === 'true', viaMail: true }; });
+          .then(function (j) { if (j.ok || j.lleno) return j; throw new Error(j.error || 'script'); })
+      : Promise.reject(new Error('sin script'))
+    ).catch(porMail);
 
     Promise.race([req, timeout]).catch(function () { return { ok: false }; }).then(function (j) {
       btn.disabled = false; btn.textContent = 'Inscribirme';
