@@ -217,7 +217,7 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
     <div class="gridbg" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">Jornada presencial · cupo 60 personas</span>
+        <span class="eyebrow">Jornada presencial · cupos limitados</span>
         <h1><span class="silver">Vendé más</span><br><span class="grad">con IA</span></h1>
         <p class="lede">Una tarde práctica para emprendedores y comerciantes. En 3 horas salís con <b style="color:var(--ink)">tu publicidad lista, tu landing publicada y un mes de contenido para redes</b>, todo hecho con inteligencia artificial. Sin saber programar.</p>
         <div class="facts">
@@ -236,15 +236,6 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
           <div class="tier"><span id="tierName">Precio preventa</span><b id="tierBadge">Primeros 20</b></div>
           <div class="price"><strong id="priceNow">$25.000</strong><s id="priceOld">$35.000</s></div>
           <p class="price-note" id="priceNote">Hasta el viernes 13 de noviembre o hasta completar los primeros 20 lugares. Después, $35.000.</p>
-
-          <div class="counter" id="counter">
-            <div class="counter-top">
-              <div class="counter-num"><span id="cnt">–</span> <small>de 60 inscriptos</small></div>
-              <div class="counter-left" id="left">Cargando cupos…</div>
-            </div>
-            <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0" id="meter"><div class="meter-fill" id="fill"></div><div class="meter-mark" title="Fin de preventa: 20 lugares"></div></div>
-            <div class="meter-legend"><span>0</span><span>20 · fin preventa</span><span>60</span></div>
-          </div>
 
           <div id="cdWrap">
             <div class="countdown" aria-live="off">
@@ -346,7 +337,7 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
           <dt>Fecha</dt><dd>Miércoles 2 de diciembre de 2026</dd>
           <dt>Horario</dt><dd>18:00 a 21:00 (acreditación 17:45)</dd>
           <dt>Dirección</dt><dd>Azcuénaga 714, CABA</dd>
-          <dt>Cupo</dt><dd>60 personas</dd>
+          <dt>Cupo</dt><dd>Limitado</dd>
         </dl>
         <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Azcu%C3%A9naga+714%2C+CABA%2C+Argentina" target="_blank" rel="noopener">Ver en Google Maps</a>
       </div>
@@ -485,36 +476,21 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
       $('tierBadge').textContent = 'Preventa agotada';
       $('fpLabel').textContent = 'Precio vigente';
       $('priceOld').hidden = true;
-      $('priceNote').textContent = 'La preventa terminó. Quedan pocos lugares: reservá el tuyo.';
+      $('priceNote').textContent = 'La preventa terminó. Cupos limitados: reservá el tuyo.';
       $('heroCta').textContent = 'Reservar mi lugar';
-      $('cdWrap').hidden = true;
     }
-    if (c === null) {
-      $('counter').hidden = !CFG.SCRIPT_URL;
-      if (t.pre) $('tierBadge').textContent = 'Primeros 20';
-      return;
-    }
+    if (c === null) return;
     var left = Math.max(0, CFG.TOTAL - c);
-    $('cnt').textContent = c;
-    $('fill').style.width = Math.min(100, c / CFG.TOTAL * 100) + '%';
-    $('meter').setAttribute('aria-valuenow', c);
     if (left === 0) {
-      $('left').textContent = 'Cupo completo';
       $('heroCta').textContent = 'Cupo completo · consultá lista de espera';
       $('heroCta').href = 'https://wa.me/' + CFG.WA + '?text=' + encodeURIComponent('Hola Javier, quiero anotarme en lista de espera para la Jornada IA del 2/12.');
       $('formBody').innerHTML = '<p style="text-align:center">Se completó el cupo de 60 personas. <a style="color:var(--cyan)" href="https://wa.me/' + CFG.WA + '">Escribime por WhatsApp</a> para la lista de espera.</p>';
-    } else if (t.pre) {
-      var lp = CFG.PREVENTA_CUPO - c;
-      $('left').textContent = lp === 1 ? '¡Queda 1 lugar en preventa!' : 'Quedan ' + lp + ' lugares en preventa';
-      $('tierBadge').textContent = (lp === 1 ? 'Queda 1' : 'Quedan ' + lp) + ' a este precio';
-    } else {
-      $('left').textContent = left === 1 ? 'Queda 1 lugar' : 'Quedan ' + left + ' lugares';
     }
   }
 
   function tick() {
     var target = new Date() <= CFG.FIN_PREVENTA ? CFG.FIN_PREVENTA : CFG.EVENTO;
-    if (target === CFG.EVENTO) $('cdLabel').textContent = 'para la jornada';
+    if (target === CFG.EVENTO) $('cdLabel').textContent = 'para la jornada del miércoles 2/12';
     var ms = Math.max(0, target - new Date());
     var d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, s = Math.floor(ms / 1e3) % 60;
     var p = function (n) { return String(n).padStart(2, '0'); };
@@ -526,7 +502,7 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
     fetch(CFG.SCRIPT_URL, { method: 'GET' })
       .then(function (r) { return r.json(); })
       .then(function (j) { if (typeof j.inscriptos === 'number') { state.count = j.inscriptos; render(); } })
-      .catch(function () { $('counter').hidden = true; });
+      .catch(function () {});
   }
 
   render(); tick(); setInterval(tick, 1000); loadCount(); setInterval(loadCount, 60000);
@@ -592,7 +568,7 @@ footer { padding-block: 32px; color: var(--ink-2); font-size: .9rem; }
       $('payBtn').textContent = 'Pagar ' + pesos(precio) + ' con Mercado Pago';
       $('doneTitle').textContent = j.ok ? '¡Listo, ' + data.nombre.split(' ')[0] + '!' : 'Último paso, ' + data.nombre.split(' ')[0];
       $('doneText').textContent = j.ok
-        ? (j.numero ? 'Tenés el lugar #' + j.numero + '. ' : '') + 'Para confirmarlo, aboná ' + pesos(precio) + ' con Mercado Pago.' + (j.viaMail ? '' : ' También te enviamos el link por mail.')
+        ? 'Para confirmarlo, aboná ' + pesos(precio) + ' con Mercado Pago.' + (j.viaMail ? '' : ' También te enviamos el link por mail.')
         : 'Aboná ' + pesos(precio) + ' con Mercado Pago y mandanos tus datos por WhatsApp con el botón de abajo para reservar tu lugar.';
       $('waLink').href = 'https://wa.me/' + CFG.WA + '?text=' + encodeURIComponent(j.ok
         ? 'Hola Javier, me inscribí a la Jornada IA del 2/12 (' + data.nombre + '). Te paso el comprobante de pago.'
